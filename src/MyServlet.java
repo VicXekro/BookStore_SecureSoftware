@@ -32,7 +32,7 @@ public class MyServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
-		URL url = new URL("http://10.100.82.37:3003/getBook");
+		URL url = new URL("http://212.47.229.155:3005/getBook");
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		int status = con.getResponseCode();
