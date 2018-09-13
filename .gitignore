@@ -1,2 +1,3 @@
 *.Logs
 .settings
+/website/node_modules
