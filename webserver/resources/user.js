@@ -20,7 +20,7 @@ router.post('/register', (req, res) => {
     connect.querysql(`SELECT * FROM users WHERE username = ${username}`).then(result => {
         if (result[0]) res.status(200).send({ error: 'Username already taken.' });
         const password = crypto.createCipher('aes192', req.body.password);
-        connect.querysql(`INSERT INTO users (username, password) VALUES (${username}, ${password});`).then(() => {
+        connect.querysql(`INSERT INTO users (username, password, phone, name, email) VALUES (${username}, ${password});`).then(() => {
             res.status(200).send({ confirm: 'Success! Registration Complete.' });
         }).catch(err => res.status(500).send({ error: err }));
     }).catch(err => res.status(500).send({ error: err }));
