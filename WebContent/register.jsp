@@ -12,7 +12,7 @@
 </head>
 <body>
 <%!
-	private String appName = "Template"; 
+	private String appName = "website"; 
 	private String name = "";
 	private String eMail = "";
 	private String phoneNumber = "";
@@ -45,7 +45,7 @@
 					<p style = "color:red;">${errorMessageMail}</p>
 				</div>
 				<div class="uk-margin">
-					<input class="uk-input" type="text" placeholder="Phone Number" name ="phone_number" value="<%if(phoneNumber!=null) out.print(phoneNumber); %>">
+					<input class="uk-input" type="text" placeholder="Phone Number" name ="phoneNumber" value="<%if(phoneNumber!=null) out.print(phoneNumber); %>">
 					<p style ="color:red;">${errorMessagePhoneNumber}</p>
 				</div>
 				<div class="uk-margin">
@@ -56,6 +56,7 @@
 				</div>
 				<div class="uk-margin">
 					<input class="uk-input" type="password" placeholder="Confirm password" name ="re_password">
+					<p style = "color:red;">${errorPassword}</p>
 				</div>
 				
 				<input type = "submit" value="Validate" class="uk-button uk-button-primary">

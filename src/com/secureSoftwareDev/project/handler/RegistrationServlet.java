@@ -1,9 +1,7 @@
 package com.secureSoftwareDev.project.handler;
 
-import java.awt.SystemTray;
 import java.io.IOException;
 import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,7 +39,7 @@ public class RegistrationServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String name = request.getParameter("name");
 		String eMail = request.getParameter("e_mail");
-		String phoneNumber = request.getParameter("phone_number");
+		String phoneNumber = request.getParameter("phoneNumber");
 		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
 		String rePassword = request.getParameter("re_password");
@@ -56,9 +54,11 @@ public class RegistrationServlet extends HttpServlet {
 		}else if(!isPhoneNumberValid(phoneNumber)) {
 			request.setAttribute("errorMessagePhoneNumber", "Please enter a valid phone number ( - , / and space are not authorized)");
 			reFillArguments(request, name, eMail, phoneNumber, userName,response);
-		}else {
-			
+		}else if(!(password.equals(rePassword))){
+			request.setAttribute("errorPassword", "Passwords do not match");
+			reFillArguments(request, name, eMail, phoneNumber, userName,response);
 		}
+		System.out.print(isPhoneNumberValid(phoneNumber));
 		
 	}
 	
@@ -90,16 +90,18 @@ public class RegistrationServlet extends HttpServlet {
 		else if (phoneNumber.startsWith("+")) {
 			String phone = phoneNumber.substring(1);
 			try {
-				Integer.parseInt(phone);
+				Long.parseLong(phone);
 				return true;
 			}catch(NumberFormatException ex) {
+				System.out.print("Hellosfdd");
 				return false;
 			}
 		}else {
 			try {
-				Integer.parseInt(phoneNumber);
+				Long.parseLong(phoneNumber);
 				return true;
 			}catch(NumberFormatException ex) {
+				System.out.print("Hellosfddsdfaggfhf");
 				return false;
 			}
 		}
