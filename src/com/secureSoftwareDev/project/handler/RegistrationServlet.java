@@ -9,13 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.secureSoftwareDev.project.handler.*;
+import com.secureSoftwareDev.project.model.User;
+
 /**
  * Servlet implementation class RegistrationServlet
  */
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+       private static Connector connector = new Connector();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -57,6 +60,9 @@ public class RegistrationServlet extends HttpServlet {
 		}else if(!(password.equals(rePassword))){
 			request.setAttribute("errorPassword", "Passwords do not match");
 			reFillArguments(request, name, eMail, phoneNumber, userName,response);
+		}else {
+			User user = new User(name,eMail,phoneNumber,userName,password);
+			connector.register(user);
 		}
 		System.out.print(isPhoneNumberValid(phoneNumber));
 		

@@ -1,3 +1,5 @@
+package com.secureSoftwareDev.project.handler;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -48,11 +50,11 @@ public class Connector {
 			HttpURLConnection con = (HttpURLConnection) target.openConnection();
 			con.setRequestMethod("POST");
 			con.setDoOutput(true);
-			con.setRequestProperty("userName", pass.userName);
-			con.setRequestProperty("password", pass.password);
-			con.setRequestProperty("email", pass.eMail);
-			con.setRequestProperty("name", pass.name);
-			con.setRequestProperty("phonenumber", pass.phoneNumber);
+			con.setRequestProperty("userName", pass.getUserName());
+			con.setRequestProperty("password", pass.getPassword());
+			con.setRequestProperty("email", pass.geteMail());
+			con.setRequestProperty("name", pass.getName());
+			con.setRequestProperty("phonenumber", pass.getPhoneNumber());
 			return main(con);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
