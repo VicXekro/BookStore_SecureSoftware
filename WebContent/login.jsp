@@ -11,7 +11,7 @@
 <script src="js/uikit-icons.min.js"></script>
 </head>
 <body>
-<%! private String appName = "Template"; %>
+<%! private String appName = "website"; %>
 	<div style="max-width: 1024px; margin: auto;">
 		<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-position-top-center">
 			<h3 class="uk-card-title">Log-In</h3>

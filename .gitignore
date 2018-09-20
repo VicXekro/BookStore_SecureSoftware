@@ -2,3 +2,5 @@
 .settings
 /webserver/node_modules
 /webserver/config.json
+/build/classes/
+.classpath
