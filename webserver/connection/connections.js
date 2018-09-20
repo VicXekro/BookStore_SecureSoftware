@@ -6,7 +6,7 @@ const pools = {
         host: creds.mysql.host,
         user: creds.mysql.user,
         password: creds.mysql.password,
-        database: 'project',
+        database: 'website',
         multipleStatements: true,
     }),
 };
