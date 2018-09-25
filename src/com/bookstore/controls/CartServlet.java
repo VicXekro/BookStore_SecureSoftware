@@ -1,28 +1,23 @@
 package com.bookstore.controls;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.media.sound.RealTimeSequencerProvider;
-
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class CartServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/CartServlet")
+public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public CartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,24 +35,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String userName = request.getParameter("username");
-		String password = request.getParameter("password");
-		try {
-			if(DBManager.checkUser(userName, password)) {
-				request.setAttribute("username_trans", DBManager.getUserByUserName(userName));
-				request.getRequestDispatcher("/home.jsp").forward(request, response);
-			}else {
-				request.setAttribute("errorMessage", "No User with the credentials entered was found.");
-				request.getRequestDispatcher("/login.jsp").forward(request, response);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			request.setAttribute("errorMessage", "SQL DB error");
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		doGet(request, response);
 	}
 
 }

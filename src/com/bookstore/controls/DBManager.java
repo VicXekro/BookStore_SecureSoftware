@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import javax.naming.NamingException;
 
 import com.bookstore.models.Book;
+import com.bookstore.models.Order;
 import com.bookstore.models.User;
 
 public class DBManager {
@@ -42,6 +43,7 @@ public class DBManager {
 		prepStatement.setString(1, SECRET_KEY);
 		prepStatement.setString(2,username);
 		ResultSet resultSet = prepStatement.executeQuery();
+		resultSet.next();
 		
 		user.setId(resultSet.getInt(1));
 		user.setUserName(resultSet.getString(2));
@@ -108,6 +110,7 @@ public class DBManager {
 		PreparedStatement preparedStatement = conn.prepareStatement(sql);
 		preparedStatement.setInt(1, id);
 		ResultSet resultSet = preparedStatement.executeQuery();
+		resultSet.next();
 		
 		Book book = new Book(resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getDouble(5), resultSet.getLong(6));
 		book.setId(id);
@@ -134,6 +137,30 @@ public class DBManager {
 		conn.close();
 		
 		return b;
+	}
+	
+	public static void registerOrder(Order order) throws SQLException {
+		String sqlOrder = "insert into order (book_id, user_id, date, quantity_bought)"
+				+ "values(?,?,?,?)";
+		String sqlUpdateBookQt = "update book set quantity = ?-? where idBook = ?;";
+		
+		Connection conn = Connector.getConnection();
+		PreparedStatement preparedStatement_1 = conn.prepareStatement(sqlOrder);
+		preparedStatement_1.setInt(1, order.getBook().getId());
+		preparedStatement_1.setInt(2, order.getUser().getId());
+		preparedStatement_1.setInt(3, order.getQuantityOrdered());
+		preparedStatement_1.setTimestamp(4, order.getDateTime());
+		
+		preparedStatement_1.executeUpdate();
+		preparedStatement_1.close();
+		
+		PreparedStatement preparedStatement_2 = conn.prepareStatement(sqlUpdateBookQt);
+		preparedStatement_2.setInt(1, order.getBook().getQuantity());
+		preparedStatement_2.setInt(2, order.getQuantityOrdered());
+		preparedStatement_2.setInt(3, order.getBook().getId());
+		
+		preparedStatement_2.executeUpdate();
+		preparedStatement_2.close();
 	}
 	
 }

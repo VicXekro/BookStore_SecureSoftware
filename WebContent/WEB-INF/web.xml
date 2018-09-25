@@ -1,36 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>website</display-name>
-=======
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>BookStore_</display-name>
-  <servlet>
-  	<description>
-  	</description>
-  	<display-name>Email</display-name>
-  	<servlet-name>Email</servlet-name>
-  	<servlet-class>com.bookstore.controls.Email</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>Email</servlet-name>
-  	<url-pattern>/Email</url-pattern>
-  </servlet-mapping>
->>>>>>> 1971583539dd244dda1ec0ab41cec290672510fd
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-<<<<<<< HEAD
-    <welcome-file>login.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-
-</web-app>
-
-=======
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
@@ -43,4 +17,3 @@
     <res-auth>Container</res-auth>
   </resource-ref>
 </web-app>
->>>>>>> 1971583539dd244dda1ec0ab41cec290672510fd

@@ -3,26 +3,26 @@ package com.bookstore.controls;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.media.sound.RealTimeSequencerProvider;
+import com.bookstore.models.Book;
+import com.bookstore.models.User;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class CartServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/HomeServlet")
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public HomeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,25 +39,22 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String userName = request.getParameter("username");
-		String password = request.getParameter("password");
 		try {
-			if(DBManager.checkUser(userName, password)) {
-				request.setAttribute("username_trans", DBManager.getUserByUserName(userName));
-				request.getRequestDispatcher("/home.jsp").forward(request, response);
-			}else {
-				request.setAttribute("errorMessage", "No User with the credentials entered was found.");
-				request.getRequestDispatcher("/login.jsp").forward(request, response);
+			if (request.getParameter("buyButton") != null) {
+				int book_id = Integer.parseInt(request.getParameter("book_id"));
+				String userName = request.getParameter("user_name");
+				Book bookSelected = DBManager.getBookById(book_id);
+				User userLogged = DBManager.getUserByUserName(userName);
+				
+				request.setAttribute("bookSelected", bookSelected);
+				request.setAttribute("userLogged", userLogged);
+				request.getRequestDispatcher("/cart.jsp").forward(request, response);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-			request.setAttribute("errorMessage", "SQL DB error");
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
-		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 }
