@@ -1,22 +1,24 @@
 package com.bookstore.models;
 
-import java.sql.Timestamp;;
+import java.sql.Timestamp;
+import java.util.Date;;
 
 public class Order {
 	private Timestamp dateTime;
 	private User user;
 	private Book book;
 	private int quantityOrdered;
-	private String deliveryDate;
+	private Date deliveryDate;
 
 	public Order() {}
 
-	public Order(Timestamp dateTime, User user, Book book, int quantityOrdered) {
+	public Order(Timestamp dateTime, User user, Book book, int quantityOrdered, Date deliveryDate) {
 		super();
 		this.dateTime = dateTime;
 		this.user = user;
 		this.book = book;
 		this.quantityOrdered = quantityOrdered;
+		this.deliveryDate = deliveryDate;
 	}
 
 	public Timestamp getDateTime() {
@@ -51,11 +53,11 @@ public class Order {
 		this.quantityOrdered = quantityOrdered;
 	}
 
-	public String getDeliveryDate() {
+	public Date getDeliveryDate() {
 		return deliveryDate;
 	}
 
-	public void setDeliveryDate(String deliveryDate) {
+	public void setDeliveryDate(Date deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
 

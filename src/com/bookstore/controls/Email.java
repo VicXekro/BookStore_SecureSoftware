@@ -41,11 +41,16 @@ public class Email extends HttpServlet {
         // outgoing message information
         String toAddress = order.getUser().getEmail();
         String subject = "Thank You For Your Purchase!";
-        String message = "Hello,\nThe following is a copy of your reciept from your latest purchase.\n"
+        Date date = order.getDeliveryDate();
+        int month = date.getMonth();
+        int day = date.getDate();
+        int year = date.getYear();
+        String test = month +  "/" + day + "/" + year;
+		String message = "Hello,\nThe following is a copy of your reciept from your latest purchase.\n"
         		+ "Book Purchased: " + order.getBook().getTitle() + "\n"
         		+ "Quantity Purchased: "+ order.getQuantityOrdered() + "\n"
         		+ "Total Price: " + (order.getQuantityOrdered() * order.getBook().getUnitPrice())
-        		+ "Expected Delivery: " + order.getDeliveryDate();
+        		+ "Expected Delivery: " + test;
         // sets SMTP server properties
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smpt.gmail.com");
