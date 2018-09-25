@@ -31,13 +31,8 @@ public class Email extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-    public void doGet(HttpServletRequest request, HttpServletResponse response, Order order) throws ServletException, IOException {
-    	response.setContentType("text/html");
-
-        // Actual logic goes here.
-        PrintWriter out = response.getWriter();
-        out.println("<h1>Hello World</h1>");
- 
+    @SuppressWarnings("deprecation")
+	public void doGet(Order order) {
         // outgoing message information
         String toAddress = order.getUser().getEmail();
         String subject = "Thank You For Your Purchase!";
