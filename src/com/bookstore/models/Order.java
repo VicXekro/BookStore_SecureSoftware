@@ -7,8 +7,8 @@ public class Order {
 	private User user;
 	private Book book;
 	private int quantityOrdered;
+	private String deliveryDate;
 
-	
 	public Order() {}
 
 	public Order(Timestamp dateTime, User user, Book book, int quantityOrdered) {
@@ -49,6 +49,14 @@ public class Order {
 
 	public void setQuantityOrdered(int quantityOrdered) {
 		this.quantityOrdered = quantityOrdered;
+	}
+
+	public String getDeliveryDate() {
+		return deliveryDate;
+	}
+
+	public void setDeliveryDate(String deliveryDate) {
+		this.deliveryDate = deliveryDate;
 	}
 
 }

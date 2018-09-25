@@ -44,7 +44,8 @@ public class Email extends HttpServlet {
         String message = "Hello,\nThe following is a copy of your reciept from your latest purchase.\n"
         		+ "Book Purchased: " + order.getBook().getTitle() + "\n"
         		+ "Quantity Purchased: "+ order.getQuantityOrdered() + "\n"
-        		+ "Total Price: " + (order.getQuantityOrdered() * order.getBook().getUnitPrice());
+        		+ "Total Price: " + (order.getQuantityOrdered() * order.getBook().getUnitPrice())
+        		+ "Expected Delivery: " + order.getDeliveryDate();
         // sets SMTP server properties
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smpt.gmail.com");
