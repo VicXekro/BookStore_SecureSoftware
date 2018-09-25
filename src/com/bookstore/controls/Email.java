@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.Properties;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +18,6 @@ import javax.mail.internet.*;
 /**
  * Servlet implementation class Email
  */
-@WebServlet("/notEmail")
 public class Email extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -52,7 +50,7 @@ public class Email extends HttpServlet {
         String message = "Hello,\nThe following is a copy of your reciept from your latest purchase.\n";
         // sets SMTP server properties
         Properties properties = new Properties();
-        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.host", "outlook.office365.com");
         properties.put("mail.smtp.port", "587");
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
