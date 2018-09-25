@@ -22,8 +22,8 @@ userLogged = (User)request.getAttribute("userLogged");
 <!-- Menu -->
 	<div class="ui secondary fixed menu" style = "background-color: white;">
 		<div class="right menu">
-			<a class="ui item active"> Cancel Order </a>
-			<a class="ui item active"> Logout </a>
+			<button onclick ="callBack()" class="ui button">Cancel Order</button>
+			<button onclick ="logOut()" class="ui button">Logout </button>
 		</div>
 	</div>
 <div class="ui grid">
@@ -52,7 +52,7 @@ userLogged = (User)request.getAttribute("userLogged");
 					<label>Name</label>
 						<div class="field">
 							<input type="text" name="name"
-								placeholder="Name" value = "<%= userLogged.getName()%>">
+								placeholder="Name" value = "<%= userLogged.getName()%> " disabled>
 						</div>
 				</div>
 				<div class="field">
@@ -60,11 +60,11 @@ userLogged = (User)request.getAttribute("userLogged");
 					<div class = "fields">
 						<div class="eight wide field">
 							<input type="text" name="phoneNumber"
-								placeholder="Phone Number" value = "<%= userLogged.getPhoneNumber()%>">
+								placeholder="Phone Number" value = "<%= userLogged.getPhoneNumber()%>" disabled>
 						</div>
 						<div class="eight wide field">
 							<input type="text" name="eMail"
-								placeholder="E-mail" value = "<%= userLogged.getEmail()%>">
+								placeholder="E-mail" value = "<%= userLogged.getEmail()%>" disabled>
 						</div>
 					</div>
 				</div>
@@ -87,7 +87,7 @@ userLogged = (User)request.getAttribute("userLogged");
 					</div>
 					<div class="field">
 						<label>Zip Code</label>
-						<input type="number" name = "zip_code" placeholder="Zip Code" value = "<%if(userLogged.getZipcode()!=0) out.print(userLogged.getZipcode());%>">
+						<input type="number" maxlength = "5" name = "zip_code" placeholder="Zip Code" value = "<%if(userLogged.getZipcode()!=0) out.print(userLogged.getZipcode());%>">
 					</div>
 					<div class="field">
 						<label>Country</label>
@@ -108,32 +108,21 @@ userLogged = (User)request.getAttribute("userLogged");
 						<label>Expiration</label>
 						<div class="two fields">
 							<div class="field">
-								<select class="ui fluid search dropdown"
-									name="card[expire-month]">
-									<option value="">Month</option>
-									<option value="1">January</option>
-									<option value="2">February</option>
-									<option value="3">March</option>
-									<option value="4">April</option>
-									<option value="5">May</option>
-									<option value="6">June</option>
-									<option value="7">July</option>
-									<option value="8">August</option>
-									<option value="9">September</option>
-									<option value="10">October</option>
-									<option value="11">November</option>
-									<option value="12">December</option>
-								</select>
+								<input type = "number" name="card[expire-month] " maxlength = "2" placeholder="Month">
 							</div>
+							/
 							<div class="field">
-								<input type="text" name="card[expire-year]" maxlength="4"
+								<input type="number" name="card[expire-year]" maxlength="4"
 									placeholder="Year">
 							</div>
 						</div>
 					</div>
 				</div>
+				<input name="book_id" value = "<%= bookOrdered.getId() %>" type = "hidden">
+				<input name="user_name" value ="<%= userLogged.getUserName() %>" type="hidden">
 				<div class="ui button" tabindex="0">Submit Order</div>
 			</form>
+			<p style = "color:red;">${errorMessage}</p>
 		</div>
   	<div class="three wide column"></div>
  </div>
@@ -149,6 +138,28 @@ userLogged = (User)request.getAttribute("userLogged");
 			document.getElementsByName('totalPrice')[0].value ="";
 		}
 	}
- </script>
+ 	function callBack(){
+		if(confirm("Do you really want to cancel this order?"))
+			{
+				window.history.back();
+				<%bookOrdered = null;
+				userLogged = null;%>
+			}
+		}
+ 	function logOut(){
+ 	    if(confirm("Do you really want to log out?"))
+ 	        {
+ 	    	location.href=${pageContext.request.contextPath};
+ 	        window.onbeforeunload = function(){
+ 	        var input_elems = document.getElementByTagName('input');
+ 	        for(var i=0;i<input_elems.length;i++){
+ 	        if(input_elems[i].type === 'hidden'){
+ 	         input_elems[i].innerHTML = "reset_value";
+ 	             }
+ 	           }
+ 	        }
+ 	    }
+ 	}
+	</script>
 </body>
 </html>

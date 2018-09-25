@@ -15,7 +15,8 @@ public class User {
 	private String country;
 	private int zipcode;
 	private long cardNumber;
-	private Date cardExpirationDate;
+	private int cardExpirationMonth;
+	private int cardExpirationYear;
 	private int csv;
 	
 	public User() {}
@@ -125,14 +126,6 @@ public class User {
 		this.cardNumber = cardNumber;
 	}
 
-	public Date getCardExpirationDate() {
-		return cardExpirationDate;
-	}
-
-	public void setCardExpirationDate(Date cardExpirationDate) {
-		this.cardExpirationDate = cardExpirationDate;
-	}
-
 	public int getCsv() {
 		return csv;
 	}
@@ -140,7 +133,22 @@ public class User {
 	public void setCsv(int csv) {
 		this.csv = csv;
 	}
-	
+
+	public int getCardExpirationMonth() {
+		return cardExpirationMonth;
+	}
+
+	public void setCardExpirationMonth(int cardExpirationMonth) {
+		this.cardExpirationMonth = cardExpirationMonth;
+	}
+
+	public int getCardExpirationYear() {
+		return cardExpirationYear;
+	}
+
+	public void setCardExpirationYear(int cardExpirationYear) {
+		this.cardExpirationYear = cardExpirationYear;
+	}
 	
 	
 }

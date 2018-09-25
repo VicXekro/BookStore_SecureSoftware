@@ -35,7 +35,7 @@ public class DBManager {
 	
 	public static User getUserByUserName(String username) throws SQLException {
 		String sql = "Select iduser, username, name, phoneNumber, email, AES_DECRYPT(password, ?), address1,"
-				+ "address2, state, country, zip_code, card_number, card_expiration_date, csv from user where username = ?;";
+				+ "address2, state, country, zip_code, card_number, csv, card_expiration_year, card_expiration_month from user where username = ?;";
 		User user = new User();
 		
 		Connection conn = Connector.getConnection();
@@ -57,8 +57,9 @@ public class DBManager {
 		user.setCountry(resultSet.getString(10));
 		user.setZipcode(resultSet.getInt(11));
 		user.setCardNumber(resultSet.getLong(12));
-		user.setCardExpirationDate(resultSet.getDate(13));
-		user.setCsv(resultSet.getInt(14));
+		user.setCsv(resultSet.getInt(13));
+		user.setCardExpirationYear(resultSet.getInt(14));
+		user.setCardExpirationMonth(resultSet.getInt(15));
 		
 		
 		conn.close();
@@ -161,6 +162,31 @@ public class DBManager {
 		
 		preparedStatement_2.executeUpdate();
 		preparedStatement_2.close();
+		conn.close();
+	}
+	
+	public static void updateUserInfoAtCheckout(User user) throws SQLException {
+		String sql = "update user set address1 = ?, address2 = ?, state = ?, country = ?, "
+				+ "zip_code = ?, card_number = ?, csv = ?, card_expiration_year = ?, card_expiration_month = ? where iduser = ?;";
+		
+		Connection conn = Connector.getConnection();
+		PreparedStatement prepStatement = conn.prepareStatement(sql);
+		prepStatement.setString(1, user.getAddress1());
+		prepStatement.setString(2, user.getAddress2());
+		prepStatement.setString(3, user.getState());
+		prepStatement.setString(4, user.getCountry());
+		prepStatement.setInt(5, user.getZipcode());
+		prepStatement.setLong(6, user.getCardNumber());
+		prepStatement.setInt(7, user.getCsv());
+		prepStatement.setInt(8, user.getCardExpirationYear());
+		prepStatement.setInt(9, user.getCardExpirationMonth());
+		prepStatement.setInt(10, user.getId());
+		
+		prepStatement.executeUpdate();
+		
+		prepStatement.close();
+		conn.close();
+		
 	}
 	
 }
