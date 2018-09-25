@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<<<<<<< HEAD
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/uikit.min.css" />
@@ -113,5 +114,16 @@
 			</div>
 		</div>
 	</div>
+=======
+<title>Book Store</title>
+
+<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+<script src="semantic/dist/jquery-3.1.1.min.js"></script>
+<script src="semantic/dist/semantic.min.js"></script>
+
+</head>
+<body>
+
+>>>>>>> 1971583539dd244dda1ec0ab41cec290672510fd
 </body>
 </html>
