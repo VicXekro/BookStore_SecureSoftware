@@ -43,6 +43,7 @@ public class CartServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		try {
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+			
 			Book bookOrdered = DBManager.getBookById(Integer.parseInt(request.getParameter("book_id")));
 			User userlogged = DBManager.getUserByUserName(request.getParameter("user_name"));
 			String address1 = request.getParameter("shipping[address]");
