@@ -130,6 +130,7 @@ bookOrdered = (Book)request.getAttribute("bookSelected");
 userLogged = (User)request.getAttribute("userLogged");
 %>
 <!-- Menu -->
+
 	<div class="ui secondary fixed menu" style = "background-color: white;">
 		<div class="right menu">
 			<button onclick ="callBack()" class="ui button">Cancel Order</button>
@@ -137,6 +138,7 @@ userLogged = (User)request.getAttribute("userLogged");
 		</div>
 	</div>
 <div class="ui grid">
+
 	<div class="three wide column"></div>
   	<div class="ten wide column">
   	<p style = "color:red;">*All changes to address and credit/debit card will directly affect the data stored in the system.</p>

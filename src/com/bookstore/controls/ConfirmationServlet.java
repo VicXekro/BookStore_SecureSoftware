@@ -1,11 +1,15 @@
 package com.bookstore.controls;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.bookstore.models.User;
 
 /**
  * Servlet implementation class ConfirmationServlet
@@ -35,7 +39,18 @@ public class ConfirmationServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		try {
+			User userLogged = DBManager.getUserByUserName(request.getParameter("username_"));
+			//System.out.print("Hello1");
+			request.setAttribute("username_trans", userLogged);
+			//System.out.print("Hello2");
+			request.getRequestDispatcher("/home.jsp").forward(request, response);
+			//System.out.print("Hello3");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.print("Hello4");
+			e.printStackTrace();
+		}
 	}
 
 }

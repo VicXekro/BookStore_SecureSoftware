@@ -27,12 +27,6 @@ user_logged = (User)request.getAttribute("username_trans");
 	<div class="ui secondary fixed menu" style = "background-color: white;">
 		<a class="item"> Home </a> <a class="item"> User Info </a> 
 		<div class="right menu">
-			<div class="item">
-				<div class="ui icon input">
-					<input type="text" placeholder="Search..."> <i
-						class="search link icon"></i>
-				</div>
-			</div>
 			<a class="ui item active"> Logout </a>
 		</div>
 	</div>

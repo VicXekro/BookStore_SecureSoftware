@@ -81,6 +81,11 @@ public class CartServlet extends HttpServlet {
 				Order order = new Order(dateTime, userlogged, bookOrdered, quantityBought, deliveryDate);
 				DBManager.registerOrder(order);
 				Email.sendEmail(order);
+				request.setAttribute("quantityB", quantityBought);
+				request.setAttribute("userLogged_", userlogged);
+				request.setAttribute("bookBought_", bookOrdered);
+				request.setAttribute("deliveryDate_", deliveryDate);
+				request.getRequestDispatcher("/confirmationPage.jsp").forward(request, response);
 			}
 			
 			
