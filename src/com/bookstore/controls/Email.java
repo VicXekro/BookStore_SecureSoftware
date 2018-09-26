@@ -24,15 +24,15 @@ public class Email extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    private final String userName = "johndoe9252018@gmail.com";
-    private final String password = "Password27!";
+    private static final String userName = "johndoe9252018@gmail.com";
+    private static final String password = "Password27!";
     public Email() {
         super();
         // TODO Auto-generated constructor stub
     }
     
     @SuppressWarnings("deprecation")
-	public void doGet(Order order) {
+	public static void sendEmail(Order order) {
         // outgoing message information
         String toAddress = order.getUser().getEmail();
         String subject = "Thank You For Your Purchase!";

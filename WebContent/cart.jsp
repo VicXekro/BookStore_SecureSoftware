@@ -139,7 +139,8 @@ userLogged = (User)request.getAttribute("userLogged");
 <div class="ui grid">
 	<div class="three wide column"></div>
   	<div class="ten wide column">
-			<form class="ui form" method="post" action = "${pageContext.request.contextPath}/CartServlet">
+  	<p style = "color:red;">*All changes to address and credit/debit card will directly affect the data stored in the system.</p>
+			<form class="ui form" method="POST" action = "${pageContext.request.contextPath}/CartServlet">
 				<h4 class="ui dividing header">Product Information</h4>
 				<div class="field">
 					<label><%=bookOrdered.getTitle() %> by <%= bookOrdered.getAuthor() %></label>
@@ -150,7 +151,7 @@ userLogged = (User)request.getAttribute("userLogged");
 				<div class="two fields">
 					<div class="field">
 						<label>Quantity*</label> 
-						<input type="number" name = "quantityOrdered" placeholder="Quantity Ordered" onkeyup="updatePrice()">
+						<input type="number" name = "quantityOrdered" placeholder="Quantity Ordered" onkeyup="updatePrice()" value ="${quantityEntered }">
 					</div>
 					<div class="field">
 						<label>Total Price</label>
@@ -218,12 +219,11 @@ userLogged = (User)request.getAttribute("userLogged");
 						<label>Expiration*</label>
 						<div class="two fields">
 							<div class="field">
-								<input type = "number" name="card[expire-month] " maxlength = "2" placeholder="Month">
+								<input type = "number" name ="card[expire-month]" value = "<%if(userLogged.getCardExpirationMonth()!=0) out.print(userLogged.getCardExpirationMonth()); %>" placeholder="Month" maxlength="2">
 							</div>
 							/
 							<div class="field">
-								<input type="number" name="card[expire-year]" maxlength="4"
-									placeholder="Year">
+								<input type="number" name="card[expire-year]" maxlength="4" placeholder="Year" value = "<%if(userLogged.getCardExpirationYear()!=0) out.print(userLogged.getCardExpirationYear());%>">
 							</div>
 						</div>
 					</div>
