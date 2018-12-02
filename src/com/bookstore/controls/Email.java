@@ -20,15 +20,15 @@ public class Email extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    private static final String userName = "johndoe9252018@gmail.com";
-    private static final String password = "Password27!";
+    private static final String userName = "donotreply.javbookstore@gmail.com";
+    private static final String password = "SsTyB35_9Kk01";
     public Email() {
         super();
         // TODO Auto-generated constructor stub
     }
     
     @SuppressWarnings("deprecation")
-	public static void sendEmail(Order order) {
+	public static void sendEmail(LinkedList<Book> book_ordered, User user, Date date) {
     	Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -43,21 +43,21 @@ public class Email extends HttpServlet {
           });
 
         try {
-        	String toAddress = order.getUser().getEmail();
+        	String toAddress = user.getEmail();
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress(userName));
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toAddress));
             String subject = "Thank You For Your Purchase!";
-            Date date = order.getDeliveryDate();
             int month = date.getMonth();
             int day = date.getDate();
             int year = date.getYear()-100;
             String test = month +  "/" + day + "/" + year;
-    		String message = "Hello,\nThe following is a copy of your reciept from your latest purchase.\n"
-            		+ "Book Purchased: " + order.getBook().getTitle() + "\n"
-            		+ "Quantity Purchased: "+ order.getQuantityOrdered() + "\n"
-            		+ "Total Price: " + (order.getQuantityOrdered() * order.getBook().getUnitPrice()) + "\n"
-            		+ "Expected Delivery: " + test;
+    		String message = "Dear "+user.getUserName()+",\nThe following is a copy of your reciept from your latest purchase.\n";
+    		for (Book book:book_ordered) {
+    			message+="- "+book.getTitle()+" by "+book.getAuthor()+": "+book.getQuantityOrdered()+" smaple(s) at $"+book.getUnitPrice()+" each\n";
+    		}
+    		message+="Total price paid: $"+Book.getTotalPrice(book_ordered)+"\n";
+            message+="\nExpected Delivery Date: "+test;
     		msg.setSentDate(new Date());
 			msg.setText(message);
 			msg.setSubject(subject);

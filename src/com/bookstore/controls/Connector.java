@@ -14,7 +14,8 @@ import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 
 public class Connector {
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/bookstore";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/bookstore";/*+
+									"?verifyServerCertificate=false"+"&useSLL=true"+"&requireSLL=true";*/
 	private static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
 	private static final String DB_USERNAME = "user_test";
 	private static final String DB_PWD = "1234";

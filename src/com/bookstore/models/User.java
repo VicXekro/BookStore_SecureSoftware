@@ -1,26 +1,35 @@
 package com.bookstore.models;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.Date;
 
 public class User {
-	private int id;
-	private String userName;
-	private String name;
-	private String phoneNumber;
-	private String email;
-	private String password;
-	private String address1;
-	private String address2;
-	private String state;
-	private String country;
-	private int zipcode;
-	private long cardNumber;
-	private int cardExpirationMonth;
-	private int cardExpirationYear;
-	private int csv;
+	private transient int id;
+	private transient String userName;
+	private transient String name;
+	private transient String phoneNumber;
+	private transient String email;
+	private transient String password;
+	private transient String address1;
+	private transient String address2;
+	private transient String state;
+	private transient String country;
+	private transient int zipcode;
+	private transient long cardNumber;
+	private transient int cardExpirationMonth;
+	private transient int cardExpirationYear;
 	
 	public User() {}
 	
+	public User(String userName, String name, String phoneNumber, String email) 
+	{
+		super();
+		this.userName = userName;
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+	}
 	public User(String userName, String name, String phoneNumber, String email, String password) {
 		super();
 		this.userName = userName;
@@ -126,14 +135,6 @@ public class User {
 		this.cardNumber = cardNumber;
 	}
 
-	public int getCsv() {
-		return csv;
-	}
-
-	public void setCsv(int csv) {
-		this.csv = csv;
-	}
-
 	public int getCardExpirationMonth() {
 		return cardExpirationMonth;
 	}
@@ -148,6 +149,14 @@ public class User {
 
 	public void setCardExpirationYear(int cardExpirationYear) {
 		this.cardExpirationYear = cardExpirationYear;
+	}
+	
+	private final void writeObject(ObjectOutputStream out) throws java.io.IOException{
+		throw new java.io.IOException("Object cannot be serialized");
+	}
+	
+	private final void readObject(ObjectInputStream in) throws java.io.IOException{
+		throw new java.io.IOException("Object cannot be deserialized");
 	}
 	
 	

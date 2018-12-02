@@ -1,10 +1,13 @@
 package com.bookstore.models;
 
+import java.util.LinkedList;
+
 public class Book {
 	private int id;
 	private String title;
 	private String author;
 	private int quantity;
+	private int quantityOrdered;
 	private double unitPrice;
 	private long isbn;
 	private int edition;
@@ -67,7 +70,13 @@ public class Book {
 		this.isbn = isbn;
 	}
 	
-	
+	public int getQuantityOrdered() {
+		return quantityOrdered;
+	}
+
+	public void setQuantityOrdered(int quantityOredered) {
+		this.quantityOrdered = quantityOredered;
+	}
 
 	public int getEdition() {
 		return edition;
@@ -82,6 +91,15 @@ public class Book {
 		return "Book [title=" + title + ", author=" + author + ", quantity=" + quantity + ", unitPrice=" + unitPrice
 				+ ", isbn=" + isbn + "]";
 	}
+	
+	public static double getTotalPrice(LinkedList<Book> ordered_book) {
+		double total_price = 0;
+		for(Book book : ordered_book) {
+			total_price += book.getQuantityOrdered() * book.getUnitPrice(); 
+		}
+		return total_price;
+	}
+	
 	
 	
 }

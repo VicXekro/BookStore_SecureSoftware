@@ -78,8 +78,8 @@
                   prompt : '- Please enter your password'
                 },
                 {
-                  type   : 'length[6]',
-                  prompt : '- Your password must be at least 6 characters'
+                  type   : 'length[8]',
+                  prompt : '- Your password must be at least 8 characters'
                 }
               ]
             }
@@ -89,6 +89,7 @@
     })
   ;
   </script>
+  <script type="text/javascript" src="semantic/my_javascript.js"></script>
 </head>
 <body>
 	<div class="ui three column doubling stackable grid container">
@@ -98,7 +99,7 @@
 				<div class="content">Create an account</div>
 			</h2>
 			
-			<form class="ui large form" method="post" action="${pageContext.request.contextPath}/RegisterServlet">
+			<form name="reg_form" class="ui large form" method="post" action="${pageContext.request.contextPath}/RegisterServlet" onsubmit="return validateRegistrationForm()">
 				<div class="ui stacked segment">
 				<h4 class="ui dividing header">User Information</h4>
 					<div class="field">
@@ -131,7 +132,7 @@
 				<div class="ui error message"></div>
 
 			</form>
-			<div class="ui error message">
+			<div class="ui error message" id="error_block">
 			${errorMessageUserName }</br>
 			${errorMessagePhoneNumber}
 			</div>
